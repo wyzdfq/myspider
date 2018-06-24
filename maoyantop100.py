@@ -12,7 +12,7 @@ headers = {
     'Upgrade-Insecure-Requests': '1',
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36'
 }
-
+#请求页面
 def get_page(offset):
     data = {'offset':offset}
     try:
@@ -24,7 +24,7 @@ def get_page(offset):
     except RequestException:
         print('请求页面出错')
         return None
-
+#分析页面
 def parse_page(html):
     pattern = re.compile('<dd>.*?>(\d+)</i>.*?<img data-src="(.*?)"\salt="(.*?)".*?"star">(.*?)</p>.*?"releasetime">(.*?)</p>.*?'
                          +'integer">(.*?)</i>.*?action">(.*?)</i>',re.S)
@@ -38,6 +38,9 @@ def parse_page(html):
             'time':item[4][5:],
             'score':item[5]+item[6]
         }
+
+ 
+#保存数据
 def save(item):
     with open('result.txt','a',encoding='UTF-8') as f:
         f.write(json.dumps(item,ensure_ascii=False)+'\n')
