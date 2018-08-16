@@ -2,7 +2,7 @@ import requests
 from requests.exceptions import RequestException
 from pyquery import PyQuery as pq
 
-
+#老板让爬的，并不知道要做什么
 str='http://tieba.baidu.com'
 f = open('test.txt', 'a')
 #请求页面
